@@ -1,0 +1,29 @@
+.container
+  br
+  h3 Listing educations
+
+  .table-responsive
+    table.table.table-striped
+      thead.thead-inverse
+        tr
+          th Name
+          th Address
+          th Course
+          th From
+          th To
+
+        tbody
+          - @educations.each do |education|
+            tr
+              td= education.school_name
+              td= education.school_address
+              td= education.course_name
+              td= education.from_date
+              td= education.to_date
+            tr
+              td = link_to 'Show', education
+              td = link_to 'Edit', edit_education_path(education)
+              td = link_to 'Destroy', education, data: { confirm: 'Are you sure?' }, method: :delete
+      br
+
+  = link_to 'New Education', new_education_path

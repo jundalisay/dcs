@@ -12,9 +12,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5' # Build JSON APIs with ease
 
 # Style Template Gems
+gem "font-awesome-rails"
 gem 'sass-rails', '~> 5.0'
-gem 'slim', '~> 3.0', '>= 3.0.6'
-gem 'bootstrap', '~> 4.0.0.alpha4'
+gem "slim-rails"
+gem 'bootstrap', '~> 4.0.0.alpha5'
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
 end
@@ -24,10 +25,11 @@ gem 'simple_form'
 gem 'devise'
 gem 'mail'
 
+# File Gems
+gem 'filepicker-rails'
+
 # gem 'redis', '~> 3.0' # Use Redis adapter to run Action Cable in production
 # gem 'capistrano-rails', group: :development
-
-gem 'devise'
 
 group :development, :test do
   gem 'byebug', platform: :mri

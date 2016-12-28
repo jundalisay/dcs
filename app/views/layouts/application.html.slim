@@ -2,11 +2,14 @@ doctype html
 html
   head
     title
-      | App
+      | SORA CV System
     = csrf_meta_tags
+    = filepicker_js_include_tag
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
+    = render 'layouts/header'
+    
     p.notice
       = notice
     p.alert

@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: boiler5_development
+  database: soracv_development
 
 test:
   <<: *default
-  database: boiler5_test
+  database: soracv_test
 
 production:
   <<: *default
-  database: boiler5_production
-  username: boiler5
-  password: <%= ENV['BOILER5_DATABASE_PASSWORD'] %>
+  database: soracv_production
+  username: soracv
+  password: <%= ENV['SORACV_DATABASE_PASSWORD'] %>

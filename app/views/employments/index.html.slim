@@ -1,0 +1,29 @@
+.container
+  br
+  h3 Listing employments
+
+  .table-responsive
+    table.table.table-striped
+      thead.thead-inverse
+        tr
+          th Employer Name
+          th Address
+          th Position
+          th From
+          th To
+
+        tbody
+          - @employments.each do |employment|
+            tr
+              td= employment.employer_name
+              td= employment.employer_address
+              td= employment.position
+              td= employment.from_date
+              td= employment.to_date
+
+            tr
+              td = link_to 'Show', employment
+              td = link_to 'Edit', edit_employment_path(employment)
+              td = link_to 'Destroy', employment, data: { confirm: 'Are you sure?' }, method: :delete
+
+  = link_to 'New Employment', new_employment_path

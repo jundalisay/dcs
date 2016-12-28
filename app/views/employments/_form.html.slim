@@ -1,0 +1,15 @@
+= simple_form_for @employment do |f|
+  - if @employment.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@employment.errors.count, "error")} prohibited this employment from being saved:"
+      ul
+        - @employment.errors.full_messages.each do |message|
+          li = message
+
+  = f.input :employer_name, class: "form-control"
+  = f.input :employer_address, class: "form-control"
+  = f.input :position, class: "form-control"
+  = f.input :from_date, class: "form-control"
+  = f.input :to_date, class: "form-control"
+
+  .actions = f.submit

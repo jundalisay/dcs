@@ -6,10 +6,22 @@
         - @employment.errors.full_messages.each do |message|
           li = message
 
-  = f.input :employer_name, class: "form-control"
-  = f.input :employer_address, class: "form-control"
-  = f.input :position, class: "form-control"
-  = f.input :from_date, class: "form-control"
-  = f.input :to_date, class: "form-control"
+  .container-fluid
+    .row
+      .col-lg-6
+        .form-group
+          label Employer
+          = f.input :employer_name, label: false, class: "form-control"
+          label Address
+          = f.input :employer_address, label: false, class: "form-control"
+          / label Position
+          / = f.input :position, label: false, class: "form-control"
+      .col-lg-6
+        .form-group
+          / label From
+          / = f.input :from_date, label: false, class: "form-control"    
+          / label To
+          / = f.input :to_date, label: false, class: "form-control"
+
 
   .actions = f.submit

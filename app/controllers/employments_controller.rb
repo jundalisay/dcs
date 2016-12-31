@@ -55,6 +55,6 @@ class EmploymentsController < ApplicationController
     end
 
     def employment_params
-      params.require(:employment).permit(:employer_name, :employer_address, :position, :from_date, :to_date)
+      params.require(:employment).permit(:employer_name, :employer_address, :position)
     end
   end

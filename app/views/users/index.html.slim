@@ -32,7 +32,7 @@
             h1.display-4.count 
               #{@employers.count}
     hr
-    
+
     - if current_user.present?
       .col-xs-12
         .table-responsive
@@ -50,18 +50,19 @@
                   td=user.id
                   td=user.username
                   td= link_to user.email, user_path(user)
-                  td=user.id
-                  td=user.id
+                  td= user.employments.last
+                  td= user.educations.last
+                  / td= @employment.employer_name
 
     
     - else
       .card.text-xs-center
         h1
-          | Please
+          | Please 
           = link_to "signup", new_user_registration_path(@user)
-          | or
+          |  or 
           = link_to "login", new_user_session_path(@user)
-          | to see the details !
+          |  to see the details!
     footer#footer
       .container
         .row

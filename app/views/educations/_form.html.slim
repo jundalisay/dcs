@@ -1,9 +1,30 @@
-= form_for @education do |f|
+= simple_form_for @education do |f|
   - if @education.errors.any?
     #error_explanation
       h2 = "#{pluralize(@education.errors.count, "error")} prohibited this education from being saved:"
       ul
         - @education.errors.full_messages.each do |message|
           li = message
+  .container-fluid
+    .row
+      .col-lg-6
+        .form-group
+          label School
+          = f.input :school_name, label: false, class: "form-control"
+          label Address
+          = f.input :school_address, label: false, class: 'form-control'
+          / label Course
+          / = f.input :course_name, label: false, class: "form-control"
+          label Logo
+          = f.input :school_logo, label: false, class: "form-control"
+      .col-lg-6
+        .form-group
+
+
+          / label From
+          / = f.input :from_date, label: false, class: "form-control"    
+          / label To
+          / = f.input :to_date, label: false, class: "form-control"
+
 
   .actions = f.submit

@@ -1,6 +1,75 @@
-p#notice = notice
+.container
+  p#notice = notice
 
+  .row
+    .col-xs-12
+      br
+      h3 Education
 
-= link_to 'Edit', edit_education_path(@education)
-'|
-= link_to 'Back', educations_path
+  .table-responsive
+    table.table.table-striped
+      thead.thead-inverse
+        tr
+          th Name
+          th Address
+          / th Course
+          th Action
+          th Action
+
+        tbody
+          tr
+            td= @education.school_name
+            td= @education.school_address
+            / td= @education.course_name
+            / td= @education.from_date
+            / td= @education.to_date
+            td = link_to 'Edit', edit_education_path(@education)
+            td = link_to 'Destroy', @education, data: { confirm: 'Are you sure?' }, method: :delete
+
+  = link_to 'Edit', edit_education_path(@education)
+  '|
+  = link_to 'Back', educations_path
+
+      / a.new-job href="#new-job"
+      /   span.fa.fa-plus
+        .container-fluid
+          .row
+            .col-lg-6
+              .form-group
+                label for="title" Title
+                input.form-control name="title" pattern=".+" placeholder="Title" required="" type="text" value=""
+            .col-lg-6
+              .form-group
+                label for="format" Data Format
+                select.form-control name="format" placeholder="Data Format" required=""
+                  option selected="" value="activity_streams" Activity Streams
+                  option value="original" Original
+          .row
+            .col-lg-6
+              .form-group
+                label for="fromDate" From Date
+                .input-group
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+                  input.form-control.js-datetime-field data-date-format="YYYYMMDDHHmm" pattern="\d{12}" required="" name="fromDate" type="datetime" /
+            .col-lg-6
+              .form-group
+                label for="toDate" To Date
+                .input-group
+                  span.input-group-addon
+                    span.glyphicon.glyphicon-calendar
+                  input.form-control.js-datetime-field data-date-format="YYYYMMDDHHmm" pattern="\d{12}" required="" name="toDate" type="datetime" /
+          .row
+            .col-lg-6
+              .form-group
+                label for="rulesFile" Rules File
+                input.form-control name="rulesFile" type="file"
+            .col-lg-6
+              .form-group
+                label for="rules" Rules
+                textarea.form-control name="rules" rows="3"
+          footer.actions
+            button.btn.action.pull-left type="reset" Cancel
+            button.btn.btn-success.action.pull-right.js-action-create type="submit" data-action="create"
+              span.glyphicon.glyphicon-plus
+              | &nbsp;Create

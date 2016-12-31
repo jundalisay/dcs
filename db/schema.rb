@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161226132144) do
+ActiveRecord::Schema.define(version: 20161228060825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,6 @@ ActiveRecord::Schema.define(version: 20161226132144) do
     t.string   "school_name"
     t.string   "school_address"
     t.string   "course_name"
-    t.date     "from_date"
-    t.date     "to_date"
     t.string   "school_logo"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -29,9 +27,6 @@ ActiveRecord::Schema.define(version: 20161226132144) do
   create_table "employments", force: :cascade do |t|
     t.string   "employer_name"
     t.string   "employer_address"
-    t.string   "position"
-    t.date     "from_date"
-    t.date     "to_date"
     t.string   "company_logo"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
@@ -87,4 +82,32 @@ ActiveRecord::Schema.define(version: 20161226132144) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "users_eds", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "education_id"
+    t.string   "course_name"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["education_id"], name: "index_users_eds_on_education_id", using: :btree
+    t.index ["user_id"], name: "index_users_eds_on_user_id", using: :btree
+  end
+
+  create_table "users_emps", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "employment_id"
+    t.string   "position"
+    t.date     "from_date"
+    t.date     "to_date"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["employment_id"], name: "index_users_emps_on_employment_id", using: :btree
+    t.index ["user_id"], name: "index_users_emps_on_user_id", using: :btree
+  end
+
+  add_foreign_key "users_eds", "educations"
+  add_foreign_key "users_eds", "users"
+  add_foreign_key "users_emps", "employments"
+  add_foreign_key "users_emps", "users"
 end

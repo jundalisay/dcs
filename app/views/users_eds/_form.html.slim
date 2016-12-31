@@ -1,0 +1,32 @@
+= simple_form_for @users_ed do |f|
+  - if @users_ed.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@users_ed.errors.count, "error")} prohibited this employment from being saved:"
+      ul
+        - @users_ed.errors.full_messages.each do |message|
+          li = message
+
+      t.references :user, index: true, foreign_key: true
+      t.references :education, index: true, foreign_key: true
+      t.string :course_name
+      t.date :from_date
+      t.date :to_date
+
+  .container-fluid
+    .row
+      .col-lg-6
+        .form-group
+          = f.hidden_field :user_id, value: current_user.id
+          = f.hidden_field :education_id, value: @education.id
+          / , value: education.id
+          label Course
+          = f.input :course_name, label: false, class: "form-control"
+
+      .col-lg-6
+        .form-group
+          label From
+          = f.input :from_date, label: false, class: "form-control"    
+          label To
+          = f.input :to_date, label: false, class: "form-control"
+
+  .actions = f.submit

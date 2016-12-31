@@ -1,6 +1,32 @@
-p#notice = notice
+.container
+  p#notice = notice
 
+  .row
+    .col-xs-12
+      br
+      h3 Employments
 
-= link_to 'Edit', edit_employment_path(@employment)
-'|
-= link_to 'Back', employments_path
+  .table-responsive
+    table.table.table-striped
+      thead.thead-inverse
+        tr
+          th Name
+          th Address
+          th Logo
+          th Action
+          th Action
+          
+        tbody
+          tr
+            td= @employment.employer_name
+            td= @employment.employer_address
+            / td= @employment.position
+            td= @employment.company_logo
+            / td= @education.from_date
+            / td= @education.to_date
+            td = link_to 'Edit', edit_employment_path(@employment)
+            td = link_to 'Destroy', @employment, data: { confirm: 'Are you sure?' }, method: :delete
+
+  = link_to 'Edit', edit_employment_path(@employment)
+  '|
+  = link_to 'Back', employments_path

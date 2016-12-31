@@ -9,19 +9,21 @@
           th Name
           th Address
           th Course
-          th From
-          th To
+          th Action
+          th 
+          th
+          th
 
         tbody
           - @educations.each do |education|
             tr
-              td= education.school_name
+              td= link_to "#{education.school_name}", education
               td= education.school_address
               td= education.course_name
-              td= education.from_date
-              td= education.to_date
-            tr
-              td = link_to 'Show', education
+              / td= education.from_date
+              / td= education.to_date
+              td = link_to 'Add To Your Education', new_users_ed_path(education)
+              / new_education_users_ed_path(education)
               td = link_to 'Edit', edit_education_path(education)
               td = link_to 'Destroy', education, data: { confirm: 'Are you sure?' }, method: :delete
       br

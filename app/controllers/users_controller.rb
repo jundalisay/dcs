@@ -4,8 +4,10 @@ class UsersController < ApplicationController
   # before_filter :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
 
   def index
+    # @employment = Employment.includes(:users_emp).where('user_id = ?', @user).last
     if params[:query]
       @users = User.text_search(params[:query])
+      d = Comment.includes(:user).where('users.admin' => true)
       # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
       if params[:query].blank?
         @users = User.all

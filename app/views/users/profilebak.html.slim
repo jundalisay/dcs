@@ -8,9 +8,7 @@ br
         li.nav-item
           a.nav-link.active data-target="#profile" data-toggle="tab" href=""  Profile
         li.nav-item
-          a.nav-link data-target="#education" data-toggle="tab" href=""  Education
-        li.nav-item
-          a.nav-link data-target="#employment" data-toggle="tab" href=""  Employment
+          a.nav-link data-target="#messages" data-toggle="tab" href=""  Messages
         li.nav-item
           a.nav-link data-target="#edit" data-toggle="tab" href=""  Edit
       .tab-content.p-b-3
@@ -60,36 +58,48 @@ br
                       strong Gary
                       | deleted My Board1 in
                       strong `Discussions`
-
-        #education.tab-pane
-          h4.m-y-2 Education
+                  tr
+                    td
+                      strong Kensington
+                      | deleted MyBoard3 in
+                      strong `Discussions`
+                  tr
+                    td
+                      strong John
+                      | deleted My Board1 in
+                      strong `Discussions`
+                  tr
+                    td
+                      strong Skell
+                      | deleted his post Look at Why this is.. in
+                      strong `Discussions`
+          /! /row
+        #messages.tab-pane
+          h4.m-y-2 Recent Messages &amp; Notifications
           .alert.alert-info.alert-dismissable
             a.panel-close.close data-dismiss="alert"  ×
-            | This lists the education history of the employee/applicant
-
-        - if current_user.present?
-          .col-xs-12
-            .table-responsive
-              table.table.table-striped
-                thead.thead-inverse
-                  tr
-                    th #
-                    th User
-                    th Email
-                    th Last Employer
-                    th Last Education
-                tbody
-                  /- @users.each do |user|
-                  / tr
-                  /   td=user.id
-                  /   td=user.username
-                  /   td= link_to user.email, user_path(user)
-                  /   td= user.employments.last
-                  /   td= user.educations.last
-
+            | This is an
+          table.table.table-hover.table-striped
+            tbody
+              tr
+                td
+                  span.pull-xs-right.font-weight-bold 3 hrs ago
+                  | Here is your a link to the latest summary report from the..
+              tr
+                td
+                  span.pull-xs-right.font-weight-bold Yesterday
+                  | There has been a request on your account since that was..
+              tr
+                td
+                  span.pull-xs-right.font-weight-bold 9/10
+                  | Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
+              tr
+                td
+                  span.pull-xs-right.font-weight-bold 9/4
+                  | Vestibulum tincidunt ullamcorper eros eget luctus.
         #edit.tab-pane
           h4.m-y-2 Edit Profile
-          form role="form"
+          form role="form" 
             .form-group.row
               label.col-lg-3.col-form-label.form-control-label First name
               .col-lg-9
@@ -103,31 +113,15 @@ br
               .col-lg-9
                 input.form-control type="email" value="email@gmail.com" /
             .form-group.row
+              label.col-lg-3.col-form-label.form-control-label Company
+              .col-lg-9
+                input.form-control type="text" value="" /
+            .form-group.row
               label.col-lg-3.col-form-label.form-control-label Website
               .col-lg-9
                 input.form-control type="url" value="" /
             .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Street Address
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label District
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label City
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Skype
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Facebook
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label LinkedIn
+              label.col-lg-3.col-form-label.form-control-label Address
               .col-lg-9
                 input.form-control placeholder="Street" type="text" value="" /
             .form-group.row
@@ -136,6 +130,18 @@ br
                 input.form-control placeholder="City" type="text" value="" /
               .col-lg-3
                 input.form-control placeholder="State" type="text" value="" /
+            .form-group.row
+              label.col-lg-3.col-form-label.form-control-label Time Zone
+              .col-lg-9
+                select#user_time_zone.form-control size="0" 
+                  option value="Hawaii"  (GMT-10:00) Hawaii
+                  option value="Alaska"  (GMT-09:00) Alaska
+                  option value=("Pacific Time (US &amp; Canada)")  (GMT-08:00) Pacific Time (US &amp; Canada)
+                  option value="Arizona"  (GMT-07:00) Arizona
+                  option value=("Mountain Time (US &amp; Canada)")  (GMT-07:00) Mountain Time (US &amp; Canada)
+                  option selected="selected" value=("Central Time (US &amp; Canada)")  (GMT-06:00) Central Time (US &amp; Canada)
+                  option value=("Eastern Time (US &amp; Canada)")  (GMT-05:00) Eastern Time (US &amp; Canada)
+                  option value=("Indiana (East)")  (GMT-05:00) Indiana (East)
             .form-group.row
               label.col-lg-3.col-form-label.form-control-label Username
               .col-lg-9
@@ -153,12 +159,12 @@ br
               .col-lg-9
                 input.btn.btn-secondary type="reset" value="Cancel" /
                 input.btn.btn-primary type="button" value=("Save Changes") /
-
     .col-lg-4.pull-lg-8.text-xs-center
       img.m-x-auto.img-fluid.img-circle alt="avatar" src="//placehold.it/150" /
+      h6.m-t-2 Upload a different photo
       label.custom-file
         input#file.custom-file-input type="file" /
-        span.custom-file-control Upload a new photo
+        span.custom-file-control Choose file
 hr/
 
 

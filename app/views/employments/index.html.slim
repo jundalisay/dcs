@@ -1,6 +1,6 @@
 .container
   br
-  h3 Listing employments
+  h3 Employments
 
   .table-responsive
     table.table.table-striped
@@ -8,20 +8,16 @@
         tr
           th Employer Name
           th Address
-          th Position
-          th From
-          th To
+          th Action
+          th 
+          th 
 
         tbody
           - @employments.each do |employment|
             tr
               td= employment.employer_name
               td= employment.employer_address
-              td= employment.position
-              td= employment.from_date
-              td= employment.to_date
-
-            tr
+              td = link_to 'Add To Your Employers', new_users_emp_path(employment)
               td = link_to 'Show', employment
               td = link_to 'Edit', edit_employment_path(employment)
               td = link_to 'Destroy', employment, data: { confirm: 'Are you sure?' }, method: :delete

@@ -1,14 +1,10 @@
 class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
 
-  # GET /educations
-  # GET /educations.json
   def index
     @educations = Education.all
   end
 
-  # GET /educations/1
-  # GET /educations/1.json
   def show
   end
 
@@ -62,13 +58,12 @@ class EducationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def education_params
-      params.fetch(:education, {})
+      params.require(:education).permit(:school_name, :school_address, :course_name, :from_date, :to_date, :school_logo)
     end
+
 end

@@ -4,8 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :educations
-  has_many :employments
+  has_many :users_eds, dependent: :destroy
+  has_many :educations, through: :users_eds, dependent: :destroy
+
+  has_many :users_emps, dependent: :destroy
+  has_many :employments, through: :users_emps, dependent: :destroy
 
   def self.text_search(query)
     if query.present?

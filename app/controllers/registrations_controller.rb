@@ -1,7 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
-  # This controller gives permissions and redirects  
-  # prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
   protected
 
   def configure_permitted_parameters

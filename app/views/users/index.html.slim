@@ -10,28 +10,6 @@
         span aria-hidden="true"  ×
         span.sr-only Close
       strong Still many features to implement!
-    .row
-      .col-md-4.col-sm-6
-        .card.card-inverse.card-success
-          .card-block.bg-success
-            h6.text-uppercase Users
-            h1.display-4.count #{@users.count}
-      .col-md-4.col-sm-6
-        .card.card-inverse.card-danger
-          .card-block.bg-warning
-            h6.text-uppercase Openings
-            h1.display-4.count
-              - if @employers.present?
-                #{@employers.count}
-              - else
-                | 0
-      .col-md-4.col-sm-6
-        .card.card-inverse.card-info
-          .card-block.bg-danger
-            h6.text-uppercase Employees
-            h1.display-4.count 
-              #{@employers.count}
-    hr
 
     - if current_user.present?
       .col-xs-12
@@ -50,12 +28,17 @@
                   td=user.id
                   td=user.username
                   td= link_to user.email, user_path(user)
-                  td= user.employments.last
-                  td= user.educations.last
-                  / td= @employment.employer_name
-
+              
     
     - else
+      .jumbotron.jumbotron-fluid
+        .container
+          .col-xs-7
+            = image_tag "http://res.cloudinary.com/dzq6ujhgq/image/upload/v1486136789/Screen_Shot_2017-02-03_at_22.24.11_wen5vx.png", class: "img-fluid"
+          .col-xs-5
+            .card
+              p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+
       .card.text-xs-center
         h1
           | Please 

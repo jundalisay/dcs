@@ -1,25 +1,21 @@
-/ nav.navbar.navbar-trans.navbar-fixed-top role="navigation" 
-nav.navbar.navbar-fixed-top.navbar-full.navbar-dark.bg-primary
+/ nav.navbar.navbar-trans.navbar-fixed-top role="navigation" .bg-primary
+nav.navbar.navbar-fixed-top.navbar-full.navbar-dark
   button.navbar-toggler.hidden-sm-up.pull-right data-target="#collapsingNavbar" data-toggle="collapse" type="button" 
     | ☰
   a.navbar-brand href="#" 
+    = image_tag "http://asean-works.com/awjobsdata/data/employer/comp_494/logo/ABA%20Logo.jpg", size: 50
   #collapsingNavbar.collapse.navbar-toggleable-xs
-    ul.nav.navbar-nav
-      li.nav-item.active
-        a.nav-link href=root_path 
-          .fa.fa-home
+    ul.nav.nav-tabs
       li.nav-item
-        a.nav-link href=educations_path Education
+        a.nav-link.active href="#"  Active
       li.nav-item
-        a.nav-link href=employments_path Employments
+        a.nav-link href="#"  Link
       li.nav-item
-        a.nav-link data-toggle="collapse" href="#myAlert" Updates
+        a.nav-link href="#"  Link
       li.nav-item
-        .form.form-inline
-          .input-group
-            = text_field_tag :query, params[:query], placeholder: "Search registrations..", class: "form-control"
-            span.input-group-btn
-              button.btn.btn-default type="button"  Go!
+        a.nav-link.disabled href="#"  Disabled
+
+
 
     ul.nav.navbar-nav.pull-right        
       - if current_user.present?
@@ -33,21 +29,3 @@ nav.navbar.navbar-fixed-top.navbar-full.navbar-dark.bg-primary
           = link_to t("login.Login"), new_user_session_path, class: "btn btn-primary"
         li.nav-item
           = link_to t("login.Sign up"), new_user_registration_path, class: "btn btn-primary"
-
-#loginModal.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
-  .modal-dialog role="document" 
-    .modal-content
-      .modal-header
-        button.close aria-label="Close" data-dismiss="modal" type="button" 
-          span aria-hidden="true"  ×
-        h4#myModalLabel.modal-title SOMETHING!
-      .modal-body
-        .col-xs-12.col-sm-12.col-md-12
-          /! = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-          /!   = f.input :email, input_html: { autofocus: true }
-          /!   = f.input :password, as: :password
-          /!   %br
-          /!   = f.submit "Login", class: "btn btn-primary btn-block"
-      .modal-footer
-        /!= link_to t("helpers.forgot_password"), new_user_password_path, class: "btn btn-sm btn-warning"
-     

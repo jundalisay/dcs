@@ -4,22 +4,26 @@ class UsersController < ApplicationController
   # before_filter :authenticate_user!, only: [:show, :new, :edit, :update, :destroy]
 
   def index
-    # @employment = Employment.includes(:users_emp).where('user_id = ?', @user).last
-    if params[:query]
-      @users = User.text_search(params[:query])
-      d = Comment.includes(:user).where('users.admin' => true)
-      # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
-      if params[:query].blank?
-        @users = User.all
+    if current_user.present?
+      # @employment = Employment.includes(:users_emp).where('user_id = ?', @user).last
+      if params[:query]
+        @users = User.text_search(params[:query])
+        d = Comment.includes(:user).where('users.admin' => true)
         # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
+        if params[:query].blank?
+          @users = User.all
+          # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
+        else
+        end
       else
+        @users = User.all 
+        @employers = User.where("rel_status = ?", "employer")
+        @profiles = User.where("rel_status = ?", "complete")
+        # @users = User.where("deleted = ?", false)
+        # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
       end
     else
-      @users = User.all 
-      @employers = User.where("rel_status = ?", "employer")
-      @profiles = User.where("rel_status = ?", "complete")
-      # @users = User.where("deleted = ?", false)
-      # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
+      redirect_to new_user_session_path
     end
   end
 

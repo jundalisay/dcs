@@ -1,5 +1,5 @@
 class SessionsController < Devise::SessionsController
-  before_filter :configure_permitted_parameters
+  before_action :configure_permitted_parameters
   protected
 
   def configure_permitted_parameters

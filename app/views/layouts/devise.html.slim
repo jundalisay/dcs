@@ -1,0 +1,28 @@
+doctype html
+html
+  head
+    title
+      | ABA Bank Ibanking
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+    link href="http://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css"
+
+  body
+
+    .container
+      = image_tag "http://res.cloudinary.com/dzq6ujhgq/image/upload/v1486136798/ABA_Logo_scyxxo.jpg", size: 50, class: "img-fluid"
+      br
+      br
+      / .jumbotron.jumbotron-fluid
+      /   .container
+    .col-xs-7
+      = image_tag "http://res.cloudinary.com/dzq6ujhgq/image/upload/v1486136789/Screen_Shot_2017-02-03_at_22.24.11_wen5vx.png", class: "img-fluid"
+    .col-xs-5
+      .card
+        p.notice
+          = notice
+        p.alert
+          = alert   
+        = yield

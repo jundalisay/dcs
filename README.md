@@ -1,6 +1,6 @@
-== Boiler Rails5 App
+== DCS Debt Clearing System
 
-**App** is an app.
+**DCS** is an app that helps debt holders reduce their debts.
 
 ## Instructions
 
@@ -10,7 +10,7 @@
 - Create and seed the database by entering **rake db:create db:migrate :db:seed** 
 - Run the app by entering **rails s**
 
-Live Demo: **http://site.com**
+Live Demo: **http://debtclear.herokuapp.com**
 
 ## This app has the following gems:
 

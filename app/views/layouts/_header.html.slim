@@ -6,26 +6,28 @@ nav.navbar.navbar-fixed-top.navbar-full.navbar-dark
     = image_tag "http://asean-works.com/awjobsdata/data/employer/comp_494/logo/ABA%20Logo.jpg", size: 50
   #collapsingNavbar.collapse.navbar-toggleable-xs
     ul.nav.nav-tabs
-      li.nav-item
-        a.nav-link.active href="#"  Active
-      li.nav-item
-        a.nav-link href="#"  Link
-      li.nav-item
-        a.nav-link href="#"  Link
-      li.nav-item
-        a.nav-link.disabled href="#"  Disabled
+
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" =t "layout.atm_locator"
+        .dropdown-menu
+          = link_to t("layout.phnom_penh"), users_path, class: "dropdown-item"
+          = link_to t("layout.siam_reap"), "#", class: "dropdown-item disabled"
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" =t "layout.ibanking_features"
+        .dropdown-menu
+          = link_to t("layout.online_payments"), users_path, class: "dropdown-item"
+          = link_to t("layout.debt_help"), "#", class: "dropdown-item disabled"
 
 
-
-    ul.nav.navbar-nav.pull-right        
-      - if current_user.present?
-        li.nav-item
-          a.nav-link aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            | Hi #{current_user.email}
-        li.nav-item
-          = link_to t("layout.logout"), destroy_user_session_path, method: :delete, class: "btn btn-primary"
-      - else
-        li.nav-item
-          = link_to t("login.Login"), new_user_session_path, class: "btn btn-primary"
-        li.nav-item
-          = link_to t("login.Sign up"), new_user_registration_path, class: "btn btn-primary"
+      .pull-right
+        - if current_user.present?
+          li.nav-item
+            a.nav-link aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+              | Hi #{current_user.email}
+          li.nav-item
+            = link_to t("layout.logout"), destroy_user_session_path, method: :delete, class: "btn btn-primary"
+        - else
+          li.nav-item
+            = link_to t("login.Login"), new_user_session_path, class: "btn btn-primary"
+          li.nav-item
+            = link_to t("login.Sign up"), new_user_registration_path, class: "btn btn-primary"

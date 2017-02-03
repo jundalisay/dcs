@@ -5,14 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: soracv_development
+  database: dcs_development
 
 test:
   <<: *default
-  database: soracv_test
+  database: dcs_test
 
 production:
   <<: *default
-  database: soracv_production
-  username: soracv
-  password: <%= ENV['SORACV_DATABASE_PASSWORD'] %>
+  database: dcs_production
+  username: dcs
+  password: <%= ENV['DCS_DATABASE_PASSWORD'] %>

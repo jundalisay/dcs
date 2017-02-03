@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20161228060825) do
     t.datetime "updated_at",     null: false
   end
 
-  create_table "employers", force: :cascade do |t|
+  create_table "employments", force: :cascade do |t|
     t.string   "employer_name"
     t.string   "employer_address"
-    t.string   "employer_logo"
+    t.string   "company_logo"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 20161228060825) do
     t.date     "birthday"
     t.string   "gender",                 default: "female"
     t.string   "rel_status"
-    t.date     "interview_date"
     t.string   "filepicker_url"
     t.string   "user_street_address"
     t.string   "user_district"
@@ -53,7 +52,6 @@ ActiveRecord::Schema.define(version: 20161228060825) do
     t.string   "hobbies"
     t.string   "weaknesses"
     t.string   "strengths"
-    t.text     "notes"
     t.boolean  "verified"
     t.string   "national_id"
     t.string   "drivers_license"
@@ -67,8 +65,6 @@ ActiveRecord::Schema.define(version: 20161228060825) do
     t.string   "facebook"
     t.string   "linkedin"
     t.string   "skype"
-    t.string   "user_score"
-    t.string   "user_points"
     t.string   "email",                  default: "",        null: false
     t.string   "encrypted_password",     default: "",        null: false
     t.string   "reset_password_token"
@@ -99,18 +95,18 @@ ActiveRecord::Schema.define(version: 20161228060825) do
 
   create_table "users_emps", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "employer_id"
+    t.integer  "employment_id"
     t.string   "position"
     t.date     "from_date"
     t.date     "to_date"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["employer_id"], name: "index_users_emps_on_employer_id", using: :btree
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["employment_id"], name: "index_users_emps_on_employment_id", using: :btree
     t.index ["user_id"], name: "index_users_emps_on_user_id", using: :btree
   end
 
   add_foreign_key "users_eds", "educations"
   add_foreign_key "users_eds", "users"
-  add_foreign_key "users_emps", "employers"
+  add_foreign_key "users_emps", "employments"
   add_foreign_key "users_emps", "users"
 end

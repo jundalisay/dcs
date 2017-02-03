@@ -1,0 +1,108 @@
+#main.container-fluid
+  .col-xs-12.main
+    p.hidden-md-up
+      button.btn.btn-primary-outline.btn-sm data-toggle="offcanvas" type="button" 
+        i.fa.fa-chevron-left
+        | Menu
+    h3.display-4.hidden-xs-down
+    #myAlert.alert.alert-warning.fade.collapse role="alert" 
+      button.close aria-label="Close" data-dismiss="alert" type="button" 
+        span aria-hidden="true"  ×
+        span.sr-only Close
+      strong Still many features to implement!
+
+  
+    .card-columns
+      .card.text-xs-center
+        .fa.fa-map-marker.fa-5x
+        .card-footer.text-muted
+          h6 Branch and ATM Locator
+          .small Find ABA branches and ATMs near you
+
+      .card.text-xs-center
+        .fa.fa-credit-card-alt.fa-5x
+        .card-footer.text-muted
+          h6 Bank Services
+          .small Check your account balance, transfer funds, etc
+        
+      .card.text-xs-center
+        .fa.fa-handshake-o.fa-5x
+        .card-footer.text-muted
+          h6= link_to "Bankpreneurs", users_path
+          .small Check out our enterprising bank users!
+        
+      
+    hr
+    footer#footer
+      .container
+        .row
+          .col-xs-6.col-sm-6.col-md-3.column
+            h4 Information
+            ul.nav
+              li
+                | Phone: 
+              li
+                | Email: 
+              li
+                | Contact:
+          .col-xs-6.col-md-3.column
+            h4 Instructions
+            ul.nav
+              li
+                a href="#"  How to Register
+              li
+                a href="#"  How to Update your profile
+              - if @user && @user.admin == "TRUE"
+                li
+                  a href="#"  How to Delete Users
+                li
+                  a href="#"  How to Post an Opening
+
+          .col-xs-6.col-md-3.column
+            h4 About
+            ul.nav
+              li
+                a href="#"  About Us
+              li
+                a href="#"  Privacy Policy
+              li
+                a href="#"  Terms &amp; Conditions
+          .col-xs-6.col-md-3.column
+            h4 External Links
+            ul.nav
+              li
+                a href="#"  Company Site
+              li
+                a href="#"  Facebook Page
+
+        p.text-right ©2016
+    .scroll-up
+      a href="#" 
+        i.fa.fa-angle-up
+
+
+
+#sorry.modal.fade aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" 
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden="true" data-dismiss="modal" type="button"  ×
+        h2.text-center Sorry, this fetures is not yet available
+      .modal-body.row
+        h6.text-center COMPLETE THESE FIELDS TO SIGN UP
+        form.col-md-10.col-md-offset-1.col-xs-12.col-xs-offset-0
+          .form-group
+            input.form-control.input-lg placeholder="Email" type="text" /
+          .form-group
+            input.form-control.input-lg placeholder="Password" type="password" /
+          .form-group
+            button.btn.btn-danger.btn-lg.btn-block Sign In
+            span.pull-right
+              a href="#"  Register
+            span
+              a href="#"  Need help?
+      .modal-footer
+        h6.text-center
+          a href=""  Privacy is important to us. Click here to read why.
+
+

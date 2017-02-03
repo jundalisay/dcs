@@ -1,167 +1,114 @@
-p#notice = notice
-
 br
 .container
+  p#notice = notice
   .row.m-y-2
     .col-lg-8.push-lg-4
       ul.nav.nav-tabs
         li.nav-item
           a.nav-link.active data-target="#profile" data-toggle="tab" href=""  Profile
         li.nav-item
-          a.nav-link data-target="#education" data-toggle="tab" href=""  Education
-        li.nav-item
-          a.nav-link data-target="#employment" data-toggle="tab" href=""  Employment
-        li.nav-item
-          a.nav-link data-target="#edit" data-toggle="tab" href=""  Edit
+          a.nav-link data-target="#services" data-toggle="tab" href="" Services
+        
+      br
       .tab-content.p-b-3
         #profile.tab-pane.active
-          h4.m-y-2 User Profile
-          .row
+          h4.m-y-2 #{@user.username}
+          .row.small
             .col-md-6
-              h6 About
-              p
-                | Web Designer, UI/UX Engineer
-              h6 Hobbies
-              p
-                | Indie music, skiing and hiking. I love the great outdoors.
+              .fa.fa-user
+              | &nbsp #{@user.first_name} &nbsp #{@user.last_name}
+              br
+              - if @user == current_user || current_user.admin == true
+                .fa.fa-envelope
+                | &nbsp #{@user.email}
+                br
+                .fa.fa-phone
+                | &nbsp #{@user.phone}
+                br
+                .fa.fa-skype
+                | &nbsp #{@user.skype}
+                br
+                .fa.fa-facebook
+                | &nbsp #{@user.facebook}
+                br
+                .fa.fa-linkedin
+                | &nbsp #{@user.linkedin}
+                br
+                .fa.fa-user-circle
+                | &nbsp #{@user.website}
+                br
+                .fa.fa-map-marker
+                | &nbsp #{@user.user_street_address} #{@user.user_district} #{@user.user_city} #{@user.user_province} #{@user.user_country} #{@user.user_region}
+
             .col-md-6
-              h6 Recent Tags
-              a.tag.tag-default.tag-pill href=""  html5
-              a.tag.tag-default.tag-pill href=""  react
-              a.tag.tag-default.tag-pill href=""  codeply
-              a.tag.tag-default.tag-pill href=""  angularjs
-              a.tag.tag-default.tag-pill href=""  css3
-              a.tag.tag-default.tag-pill href=""  jquery
-              a.tag.tag-default.tag-pill href=""  bootstrap
-              a.tag.tag-default.tag-pill href=""  responsive-design
-              hr/
-              span.tag.tag-primary
-                i.fa.fa-user
-                | 900 Followers
-              span.tag.tag-success
-                i.fa.fa-cog
-                | 43 Forks
-              span.tag.tag-danger
-                i.fa.fa-eye
-                | 245 Views
-            .col-md-12
-              h4.m-t-2
-                span.fa.fa-clock-o.ion-clock.pull-xs-right
-                | Recent Activity
-              table.table.table-hover.table-striped
-                tbody
-                  tr
-                    td
-                      strong Abby
-                      | joined ACME Project Team in
-                      strong `Collaboration`
-                  tr
-                    td
-                      strong Gary
-                      | deleted My Board1 in
-                      strong `Discussions`
+              .fa.fa-male
+              | &nbsp #{@user.gender}
+              / .fa.fa-comment
+              / | &nbsp #{@user.status}
+              br
+              .fa.fa-sticky-note
+              | &nbsp #{@user.about}
 
-        #education.tab-pane
-          h4.m-y-2 Education
-          .alert.alert-info.alert-dismissable
-            a.panel-close.close data-dismiss="alert"  ×
-            | This lists the education history of the employee/applicant
+              | Joined on #{@user.created_at.strftime("%d %b. %Y")}
+              - if @user.last_sign_in_at
+                br
+                | Last seen: #{@user.last_sign_in_at.strftime("%d %b. %Y")}
 
-        - if current_user.present?
+
+        #services.tab-pane
+          / h4.m-y-2 Services
+          / .alert.alert-info.alert-dismissable
+          /   a.panel-close.close data-dismiss="alert"  ×
+
           .col-xs-12
-            .table-responsive
+            .table-responsive.small
               table.table.table-striped
                 thead.thead-inverse
                   tr
-                    th #
-                    th User
-                    th Email
-                    th Last Employer
-                    th Last Education
+                    th
+                      | Supplied Service &nbsp;
+                      
+                    th Selling Price
+                    th Measure
+                    th Minimum Order
+                    th Availability
+                    th Status
                 tbody
-                  /- @users.each do |user|
-                  / tr
-                  /   td=user.id
-                  /   td=user.username
-                  /   td= link_to user.email, user_path(user)
-                  /   td= user.employments.last
-                  /   td= user.educations.last
-
-        #edit.tab-pane
-          h4.m-y-2 Edit Profile
-          form role="form"
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label First name
-              .col-lg-9
-                input.form-control type="text" value="Jane" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Last name
-              .col-lg-9
-                input.form-control type="text" value="Bishop" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Email
-              .col-lg-9
-                input.form-control type="email" value="email@gmail.com" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Website
-              .col-lg-9
-                input.form-control type="url" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Street Address
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label District
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label City
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Skype
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Facebook
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label LinkedIn
-              .col-lg-9
-                input.form-control placeholder="Street" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label
-              .col-lg-6
-                input.form-control placeholder="City" type="text" value="" /
-              .col-lg-3
-                input.form-control placeholder="State" type="text" value="" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Username
-              .col-lg-9
-                input.form-control type="text" value="janeuser" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Password
-              .col-lg-9
-                input.form-control type="password" value="11111122333" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label Confirm password
-              .col-lg-9
-                input.form-control type="password" value="11111122333" /
-            .form-group.row
-              label.col-lg-3.col-form-label.form-control-label
-              .col-lg-9
-                input.btn.btn-secondary type="reset" value="Cancel" /
-                input.btn.btn-primary type="button" value=("Save Changes") /
-
-    .col-lg-4.pull-lg-8.text-xs-center
-      img.m-x-auto.img-fluid.img-circle alt="avatar" src="//placehold.it/150" /
-      label.custom-file
-        input#file.custom-file-input type="file" /
-        span.custom-file-control Upload a new photo
-hr/
+                  
 
 
-= link_to 'Edit', edit_user_path(@user)
-'|
-= link_to 'Back', users_path
+
+    .col-md-4.pull-md-8.text-xs-center
+      - if @user.photo?
+        = image_tag @user.photo, size: "200", class: "img-fluid rounded-circle"
+      - elsif @user.avatar.present?
+        = image_tag(@user.avatar, size: "200", class: "img-fluid rounded-circle")
+      - elsif @user.gender == "female"
+        = link_to image_tag("http://res.cloudinary.com/nara/image/upload/v1472200264/femalebrown_vgvlez.png", class: "img-fluid rounded-circle"), user_path(@user)
+      - else 
+        = link_to image_tag("http://res.cloudinary.com/nara/image/upload/v1472200273/maleyellow_o0r1vi.jpg", class: "img-fluid rounded-circle center-block"), user_path(@user)
+        
+      .col-xs-12
+        = @user.status
+      br
+      br
+      - if @user == current_user || current_user.admin == true
+        br
+        br
+        = link_to 'Edit Details', edit_user_path(@user), class: "btn btn-primary"
+        = link_to 'Update Account', edit_user_registration_path(@user), class: "btn btn-warning"
+      - else
+        = link_to 'Send message', root_path, class: 'btn btn-sm btn-primary'
+        br
+        .btn-group
+          .span id="#{@user.id}_add_friend_button" 
+            = link_to 'Add friend', root_path, class: "btn btn-sm btn-success"
+          .span id="#{@user.id}_added" 
+          
+        br
+        b Rate #{@user.username} :
+        br
+
+  hr/
+
+  = link_to 'Back', users_path

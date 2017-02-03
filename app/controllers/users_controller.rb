@@ -23,7 +23,7 @@ class UsersController < ApplicationController
         # @users = Kaminari.paginate_array(@users).page(params[:page]).per(15)
       end
     else
-      redirect_to new_user_session_path
+      redirect_to root_path #new_user_session_path
     end
   end
 

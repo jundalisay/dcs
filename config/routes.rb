@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
     
-  root 'users#index'
+  # root 'users#index'
+  root 'home#index'
+  # get 'welcome/splash'
+  # get 'welcome/login_signup'
+  # get 'welcome/map'
+  # get 'welcome/route'
+
   # root new_user_session_path
   # devise_scope :user do
   #   root to: "devise/sessions#new"
